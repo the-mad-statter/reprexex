@@ -26,6 +26,10 @@ jobs:
           extra-packages: any::covr
           needs: coverage
 
+      - name: Install PhantomJS
+        run: |
+          Rscript -e 'webshot::install_phantomjs()'
+
       - name: Test coverage
         run: covr::codecov(quiet = FALSE)
         shell: Rscript {0}

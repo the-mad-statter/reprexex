@@ -19,9 +19,8 @@ htm_to_md_img_lnk <- function(x) {
     )
   )
 
-  img <- png_file |>
+  png_file |>
     magick::image_read() |>
-    magick::image_trim()
-
-  print(img)
+    magick::image_trim() |>
+    print()
 }

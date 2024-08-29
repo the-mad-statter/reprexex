@@ -1,0 +1,14 @@
+---
+title: "&nbsp;"
+output: html_document
+params:
+  x: "missing"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+params$x
+```

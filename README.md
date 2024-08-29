@@ -12,14 +12,21 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![](https://img.shields.io/github/last-commit/the-mad-statter/reprexex.svg)](https://github.com/the-mad-statter/reprexex/commits/main)
 [![License: GPL (\>=
 3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
-<br />
-
+<br /> [![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/Style/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/lint/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/test-coverage/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![](https://codecov.io/gh/the-mad-statter/reprexex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/the-mad-statter/reprexex)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/R-CMD-check/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
 <!-- badges: end -->
 
 ## Overview
 
 The goal of `reprexex` is to provide additional functionality for the
-{reprex} package.
+[{reprex}](https://cran.r-project.org/package=reprex) package.
 
 <br />
 

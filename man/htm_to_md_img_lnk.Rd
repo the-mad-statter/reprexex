@@ -12,3 +12,14 @@ htm_to_md_img_lnk(x)
 \description{
 HTML to Markdown Image Link
 }
+\examples{
+\dontrun{
+## copy to clipboard
+library(table1)
+
+reprexex::htm_to_md_img_lnk(table1(~mpg, data = mtcars))
+## end copy to clipboard
+
+reprex::reprex()
+}
+}

@@ -3,6 +3,17 @@
 #' @param x html object to convert to image
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' ## copy to clipboard
+#' library(table1)
+#'
+#' reprexex::htm_to_md_img_lnk(table1(~mpg, data = mtcars))
+#' ## end copy to clipboard
+#'
+#' reprex::reprex()
+#' }
 htm_to_md_img_lnk <- function(x) {
   rmd_file <- system.file(
     "htm_to_md_img_lnk/template.Rmd",
@@ -21,6 +32,5 @@ htm_to_md_img_lnk <- function(x) {
 
   png_file |>
     magick::image_read() |>
-    magick::image_trim() |>
-    print()
+    magick::image_trim()
 }

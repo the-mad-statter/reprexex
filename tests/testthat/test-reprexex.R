@@ -10,6 +10,7 @@ test_that("opt", {
 })
 
 test_that("reprexex", {
+  skip_if_not(clipr::clipr_available(), message = clipr::dr_clipr())
   expect_equal(
     {
       c(

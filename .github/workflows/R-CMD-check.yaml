@@ -1,10 +1,10 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
+    branches: [main, actions]
   pull_request:
-    branches: [main, master]
+    branches: [main, actions]
 
 name: R-CMD-check
 
@@ -12,24 +12,87 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) (Clip? ${{ matrix.config.allow_clip }} Type? ${{ matrix.config.clip_type }})
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - { os: macOS-latest, r: 'release', allow_clip: TRUE }
+          - { os: windows-latest, r: 'release', allow_clip: TRUE }
+          - { os: windows-latest, r: 'devel', allow_clip: TRUE }
+          - {
+              os: ubuntu-latest,
+              r: 'devel',
+              http-user-agent: 'release',
+              allow_clip: TRUE,
+              clip_type: xclip,
+            }
+          - {
+              os: ubuntu-latest,
+              r: 'release',
+              allow_clip: TRUE,
+              clip_type: xclip,
+            }
+          - {
+              os: ubuntu-latest,
+              r: 'release',
+              allow_clip: TRUE,
+              clip_type: xsel,
+            }
+          - { os: ubuntu-latest, r: 'release', clip_type: xsel }
+          - {
+              os: ubuntu-latest,
+              r: 'release',
+              allow_clip: TRUE,
+              clip_type: none,
+            }
+          - {
+              os: ubuntu-latest,
+              r: 'release',
+              allow_clip: TRUE,
+              clip_type: nodisplay,
+            }
+          - {
+              os: ubuntu-latest,
+              r: 'oldrel-1',
+              allow_clip: TRUE,
+              clip_type: xclip,
+            }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Install and run XVFB
+        if: ${{ matrix.config.clip_type == 'xclip' || matrix.config.clip_type == 'xsel' }}
+        run: |
+          sudo apt-get install -y xvfb
+          sudo /usr/bin/Xvfb :99.0 -screen 0 1280x1024x24 &
+          sleep 3
+
+      - name: Install xclip
+        if: ${{ matrix.config.clip_type == 'xclip' }}
+        run: |
+          sudo apt-get install -y xclip
+          # Initialize xclip
+          uptime | xclip -i -sel p -f | xclip -i -sel c
+          xclip -o -sel clipboard
+        env:
+          DISPLAY: ':99.0'
+
+      - name: Install xclip (nodisplay)
+        if: ${{ matrix.config.clip_type == 'nodisplay' }}
+        run: |
+          sudo apt-get install -y xclip
+
+      - name: Install xsel
+        if: ${{ matrix.config.clip_type == 'xsel' }}
+        run: |
+          sudo apt-get install -y xsel
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -41,13 +104,21 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
-          needs: check
+          extra-packages: rcmdcheck
 
       - name: Install PhantomJS
         run: |
           Rscript -e 'webshot::install_phantomjs()'
 
       - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
+        if: ${{ matrix.config.clip_type != 'nodisplay' }}
+        env:
+          ALLOW_CLIP: ${{ matrix.config.allow_clip }}
+          CLIP_TYPE: ${{ matrix.config.clip_type }}
+          DISPLAY: ':99.0'
+
+      - uses: r-lib/actions/check-r-package@v2
+        if: ${{ matrix.config.clip_type == 'nodisplay' }}
+        env:
+          ALLOW_CLIP: ${{ matrix.config.allow_clip }}
+          CLIP_TYPE: ${{ matrix.config.clip_type }}

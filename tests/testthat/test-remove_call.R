@@ -17,6 +17,7 @@ test_that("remove_function_call_from_code", {
 })
 
 test_that("remove_function_call_from_clip", {
+  skip_if_not(clipr::clipr_available(), message = clipr::dr_clipr())
   expect_equal(
     {
       c(
@@ -58,6 +59,7 @@ test_that("remove_library_call_from_code", {
 })
 
 test_that("", {
+  skip_if_not(clipr::clipr_available(), message = clipr::dr_clipr())
   expect_equal(
     {
       c(

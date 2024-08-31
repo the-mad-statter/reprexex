@@ -26,18 +26,18 @@ opt <- function(x, opt_name = NA_character_) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(clipr)
 #'
-#' if (clipr_available()) {
-#'   c(
-#'     "library(reprexex)",
-#'     "library(table1)",
-#'     "",
-#'     "as_img(table1(~ mpg, data = mtcars))"
-#'   ) |>
-#'     write_clip()
+#' c(
+#'   "library(reprexex)",
+#'   "library(table1)",
+#'   "",
+#'   "as_img(table1(~ mpg, data = mtcars))"
+#' ) |>
+#'   write_clip()
 #'
-#'   reprexex()
+#' reprexex()
 #' }
 #' @seealso [reprex::reprex()]
 reprexex <- function(html_preview = opt(TRUE), ...) {

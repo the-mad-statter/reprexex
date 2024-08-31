@@ -22,18 +22,18 @@ Removes the \code{library(reprexex)} and \code{\link[=as_img]{as_img()}} calls f
 contents. Finally re-renders the html preview if requested.
 }
 \examples{
+\dontrun{
 library(clipr)
 
-if (clipr_available()) {
-  c(
-    "library(reprexex)",
-    "library(table1)",
-    "",
-    "as_img(table1(~ mpg, data = mtcars))"
-  ) |>
-    write_clip()
+c(
+  "library(reprexex)",
+  "library(table1)",
+  "",
+  "as_img(table1(~ mpg, data = mtcars))"
+) |>
+  write_clip()
 
-  reprexex()
+reprexex()
 }
 }
 \seealso{

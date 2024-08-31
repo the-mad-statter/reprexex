@@ -67,5 +67,6 @@ test <- function(x, ...) {
       )
     #)
   #)
+  closeAllConnections()
   png_file
 }

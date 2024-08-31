@@ -63,7 +63,7 @@ remove_function_call_from_code <- function(code, call) {
 #' @examples
 #' library(clipr)
 #'
-#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+#' if (clipr_available()) {
 #'   c(
 #'     "library(table1)",
 #'     "",
@@ -119,7 +119,7 @@ remove_library_call_from_code <- function(code, lib) {
 #' @examples
 #' library(clipr)
 #'
-#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+#' if (clipr_available()) {
 #'   c(
 #'     "library(reprexex)",
 #'     "library(table1)",

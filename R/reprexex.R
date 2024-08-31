@@ -28,7 +28,7 @@ opt <- function(x, opt_name = NA_character_) {
 #' @examples
 #' library(clipr)
 #'
-#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+#' if (clipr_available()) {
 #'   c(
 #'     "library(reprexex)",
 #'     "library(table1)",
@@ -39,7 +39,6 @@ opt <- function(x, opt_name = NA_character_) {
 #'
 #'   reprexex()
 #' }
-#'
 #' @seealso [reprex::reprex()]
 reprexex <- function(html_preview = opt(TRUE), ...) {
   reprex::reprex(html_preview = html_preview, ...)

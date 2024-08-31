@@ -18,7 +18,7 @@ Remove Library Call from Clip
 \examples{
 library(clipr)
 
-if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+if (clipr_available()) {
   c(
     "library(reprexex)",
     "library(table1)",

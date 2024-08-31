@@ -20,7 +20,7 @@ code if any.
 \examples{
 library(clipr)
 
-if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+if (clipr_available()) {
   c(
     "library(table1)",
     "",

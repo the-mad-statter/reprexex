@@ -24,18 +24,17 @@ contents. Finally re-renders the html preview if requested.
 \examples{
 library(clipr)
 
-if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
+if (clipr_available()) {
   c(
     "library(reprexex)",
     "library(table1)",
     "",
     "as_img(table1(~ mpg, data = mtcars))"
   ) |>
-    clipr::write_clip()
+    write_clip()
 
   reprexex()
 }
-
 }
 \seealso{
 \code{\link[reprex:reprex]{reprex::reprex()}}

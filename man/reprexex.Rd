@@ -22,7 +22,6 @@ Removes the \code{library(reprexex)} and \code{\link[=as_img]{as_img()}} calls f
 contents. Finally re-renders the html preview if requested.
 }
 \examples{
-\dontrun{
 library(clipr)
 
 c(
@@ -34,7 +33,6 @@ c(
   write_clip()
 
 reprexex()
-}
 }
 \seealso{
 \code{\link[reprex:reprex]{reprex::reprex()}}

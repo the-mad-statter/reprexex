@@ -15,9 +15,7 @@ as_img(x, ...)
 As Image
 }
 \examples{
-\dontrun{
 library(table1)
 
 as_img(table1(~mpg, data = mtcars))
-}
 }

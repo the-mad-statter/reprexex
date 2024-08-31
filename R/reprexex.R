@@ -26,7 +26,6 @@ opt <- function(x, opt_name = NA_character_) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' library(clipr)
 #'
 #' c(
@@ -38,7 +37,6 @@ opt <- function(x, opt_name = NA_character_) {
 #'   write_clip()
 #'
 #' reprexex()
-#' }
 #' @seealso [reprex::reprex()]
 reprexex <- function(html_preview = opt(TRUE), ...) {
   reprex::reprex(html_preview = html_preview, ...)

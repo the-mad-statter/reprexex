@@ -6,15 +6,19 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(table1)
 #'
 #' as_img(table1(~mpg, data = mtcars))
+#' }
 as_img <- function(x, ...) {
   UseMethod("as_img")
 }
 
 #' @exportS3Method reprexex::as_img
 as_img.default <- function(x, ...) {
+  # examples set to dontrun because webshot leaves custom stdin and stdout open.
+  # tried closing with closeAllConnections but that caused a write error
   rmd_file <- system.file(
     "as_img/template.Rmd",
     package = "reprexex"
@@ -34,8 +38,6 @@ as_img.default <- function(x, ...) {
     magick::image_read() |>
     magick::image_trim() |>
     print(info = FALSE)
-
-  closeAllConnections() # webshot leaves custom stdin and stdout open
 }
 
 #' @exportS3Method reprexex::as_img

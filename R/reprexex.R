@@ -26,6 +26,7 @@ opt <- function(x, opt_name = NA_character_) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(clipr)
 #'
 #' c(
@@ -37,8 +38,11 @@ opt <- function(x, opt_name = NA_character_) {
 #'   write_clip()
 #'
 #' reprexex()
+#' }
 #' @seealso [reprex::reprex()]
 reprexex <- function(html_preview = opt(TRUE), ...) {
+  # examples set to dontrun because see issue in as_img
+
   reprex::reprex(html_preview = html_preview, ...)
 
   remove_library_call_from_clip()

@@ -58,14 +58,14 @@ test <- function(x, ...) {
     package = "reprexex"
   )
   png_file <- tempfile(fileext = ".png")
-  utils::capture.output(
-    suppressMessages(
+  #utils::capture.output(
+    #suppressMessages(
       webshot::rmdshot(
         rmd_file,
         png_file,
         rmd_args = list(params = list(x = x))
       )
-    )
-  )
+    #)
+  #)
   png_file
 }

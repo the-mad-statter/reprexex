@@ -29,12 +29,13 @@ as_img.default <- function(x, ...) {
       )
     )
   )
-  closeAllConnections() # webshot leaves custom stdin and stdout open
 
   png_file |>
     magick::image_read() |>
     magick::image_trim() |>
     print(info = FALSE)
+
+  closeAllConnections() # webshot leaves custom stdin and stdout open
 }
 
 #' @exportS3Method reprexex::as_img

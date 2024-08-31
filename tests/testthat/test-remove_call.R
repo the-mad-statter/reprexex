@@ -67,7 +67,7 @@ test_that("remove_library_call_from_code", {
   )
 })
 
-test_that("", {
+test_that("remove_library_call_from_clip", {
   if (!clipr::clipr_available()) {
     skip(clipr::dr_clipr())
   }

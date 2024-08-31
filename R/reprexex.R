@@ -35,7 +35,7 @@ opt <- function(x, opt_name = NA_character_) {
 #'     "",
 #'     "as_img(table1(~ mpg, data = mtcars))"
 #'   ) |>
-#'     clipr::write_clip()
+#'     write_clip()
 #'
 #'   reprexex()
 #' }

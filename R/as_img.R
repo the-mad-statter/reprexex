@@ -6,9 +6,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(table1)
 #'
 #' as_img(table1(~mpg, data = mtcars))
+#' }
 as_img <- function(x, ...) {
   UseMethod("as_img")
 }

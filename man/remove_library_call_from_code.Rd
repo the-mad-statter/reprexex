@@ -21,6 +21,7 @@ Remove Library Call from Code
 c(
   "library(reprexex)",
   "library(table1)",
+  "",
   "as_img(table1(~ mpg, data = mtcars))"
 ) |>
   remove_library_call_from_code("reprexex")

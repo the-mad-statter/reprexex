@@ -22,7 +22,9 @@ Removes the \code{library(reprexex)} and \code{\link[=as_img]{as_img()}} calls f
 contents. Finally re-renders the html preview if requested.
 }
 \examples{
-if (interactive()) {
+library(clipr)
+
+if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
   c(
     "library(reprexex)",
     "library(table1)",

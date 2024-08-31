@@ -5,6 +5,7 @@ test_that("as_img.default", {
 test_that("as_img.table1", {
   expect_null({
     library(table1)
+
     as_img(table1(~mpg, data = mtcars))
   })
 })

@@ -26,7 +26,9 @@ opt <- function(x, opt_name = NA_character_) {
 #' @export
 #'
 #' @examples
-#' if (interactive()) {
+#' library(clipr)
+#'
+#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
 #'   c(
 #'     "library(reprexex)",
 #'     "library(table1)",

@@ -18,15 +18,18 @@ remove the call and both open and trailing parentheses but will leave inner
 code if any.
 }
 \examples{
-if (interactive()) {
+library(clipr)
+
+if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
   c(
     "library(table1)",
+    "",
     "as_img(table1(~ mpg, data = mtcars))"
   ) |>
-    clipr::write_clip()
+    write_clip()
 
   remove_function_call_from_clip()
 
-  clipr::read_clip()
+  read_clip()
 }
 }

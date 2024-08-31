@@ -16,16 +16,19 @@ invisibly returns clip code with library call removed
 Remove Library Call from Clip
 }
 \examples{
-if (interactive()) {
+library(clipr)
+
+if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
   c(
     "library(reprexex)",
     "library(table1)",
+    "",
     "as_img(table1(~ mpg, data = mtcars))"
   ) |>
-    clipr::write_clip()
+    write_clip()
 
   remove_library_call_from_clip()
 
-  clipr::read_clip()
+  read_clip()
 }
 }

@@ -3,6 +3,7 @@ test_that("remove_function_call_from_code", {
     {
       c(
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
         remove_function_call_from_code(call = "as_img")
@@ -10,6 +11,7 @@ test_that("remove_function_call_from_code", {
     {
       c(
         "library(table1)",
+        "",
         "table1(~ mpg, data = mtcars)"
       )
     }
@@ -17,22 +19,27 @@ test_that("remove_function_call_from_code", {
 })
 
 test_that("remove_function_call_from_clip", {
-  skip_if_not(clipr::clipr_available(), message = clipr::dr_clipr())
+  if (!clipr::clipr_available()) {
+    skip(clipr::dr_clipr())
+  }
+
   expect_equal(
     {
       c(
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
         clipr::write_clip()
 
       remove_function_call_from_clip()
 
-      clipr::read_clip()[1:2]
+      clipr::read_clip()[1:3]
     },
     {
       c(
         "library(table1)",
+        "",
         "table1(~ mpg, data = mtcars)"
       )
     }
@@ -45,6 +52,7 @@ test_that("remove_library_call_from_code", {
       c(
         "library(reprexex)",
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
         remove_library_call_from_code("reprexex")
@@ -52,6 +60,7 @@ test_that("remove_library_call_from_code", {
     {
       c(
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       )
     }
@@ -59,23 +68,28 @@ test_that("remove_library_call_from_code", {
 })
 
 test_that("", {
-  skip_if_not(clipr::clipr_available(), message = clipr::dr_clipr())
+  if (!clipr::clipr_available()) {
+    skip(clipr::dr_clipr())
+  }
+
   expect_equal(
     {
       c(
         "library(reprexex)",
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
         clipr::write_clip()
 
       remove_library_call_from_clip()
 
-      clipr::read_clip()[1:2]
+      clipr::read_clip()[1:3]
     },
     {
       c(
         "library(table1)",
+        "",
         "as_img(table1(~ mpg, data = mtcars))"
       )
     }

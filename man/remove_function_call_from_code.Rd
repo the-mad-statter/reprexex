@@ -21,6 +21,7 @@ open and trailing parentheses but will leave inner code if any.
 \examples{
 c(
   "library(table1)",
+  "",
   "as_img(table1(~ mpg, data = mtcars))"
 ) |>
   remove_function_call_from_code(call = "as_img")

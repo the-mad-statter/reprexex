@@ -13,6 +13,7 @@
 #' @examples
 #' c(
 #'   "library(table1)",
+#'   "",
 #'   "as_img(table1(~ mpg, data = mtcars))"
 #' ) |>
 #'   remove_function_call_from_code(call = "as_img")
@@ -60,16 +61,19 @@ remove_function_call_from_code <- function(code, call) {
 #' @export
 #'
 #' @examples
-#' if (interactive()) {
+#' library(clipr)
+#'
+#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
 #'   c(
 #'     "library(table1)",
+#'     "",
 #'     "as_img(table1(~ mpg, data = mtcars))"
 #'   ) |>
-#'     clipr::write_clip()
+#'     write_clip()
 #'
 #'   remove_function_call_from_clip()
 #'
-#'   clipr::read_clip()
+#'   read_clip()
 #' }
 remove_function_call_from_clip <- function(call = "as_img") {
   clipr::read_clip() |>
@@ -89,6 +93,7 @@ remove_function_call_from_clip <- function(call = "as_img") {
 #' c(
 #'   "library(reprexex)",
 #'   "library(table1)",
+#'   "",
 #'   "as_img(table1(~ mpg, data = mtcars))"
 #' ) |>
 #'   remove_library_call_from_code("reprexex")
@@ -112,17 +117,20 @@ remove_library_call_from_code <- function(code, lib) {
 #' @export
 #'
 #' @examples
-#' if (interactive()) {
+#' library(clipr)
+#'
+#' if (clipr_available() && Sys.getenv("CLIPR_ALLOW", interactive())) {
 #'   c(
 #'     "library(reprexex)",
 #'     "library(table1)",
+#'     "",
 #'     "as_img(table1(~ mpg, data = mtcars))"
 #'   ) |>
-#'     clipr::write_clip()
+#'     write_clip()
 #'
 #'   remove_library_call_from_clip()
 #'
-#'   clipr::read_clip()
+#'   read_clip()
 #' }
 remove_library_call_from_clip <- function(lib = "reprexex") {
   clipr::read_clip() |>

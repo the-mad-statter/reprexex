@@ -15,6 +15,10 @@ knitr::opts_chunk$set(
   out.width = "100%",
   eval = FALSE
 )
+
+# Issues
+# 1. extra characters on clipboard
+# 2. unclosed webshot stdin and stdout in roxygen examples
 ```
 
 # `r params$package` <img src="man/figures/logo.png" align="right" width="125px" />

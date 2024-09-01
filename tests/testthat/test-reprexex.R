@@ -43,11 +43,13 @@ test_that("reprexex", {
     }
   )
 
-  expect_true(
-    grepl(
-      '<img src="https://i.imgur.com/.+\\.png" width="\\d+" />',
+  testthat::expect_match(
+    {
       clip[7]
-    )
+    },
+    {
+      '<img src="https://i.imgur.com/.+\\.png" width="\\d+" />'
+    }
   )
 
   expect_equal(
@@ -59,13 +61,15 @@ test_that("reprexex", {
     }
   )
 
-  expect_true(
-    grepl(
+  expect_match(
+    {
+      clip[9]
+    },
+    {
       paste0(
         "<sup>Created on \\d{4}-\\d{2}-\\d{2} with \\[reprex v\\d",
         "\\.\\d\\.\\d\\]\\(https://reprex\\.tidyverse\\.org\\)</sup>"
-      ),
-      clip[9]
-    )
+      )
+    }
   )
 })

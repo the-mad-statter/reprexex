@@ -6,8 +6,8 @@ withr::local_envvar(
 clean_clip <- function(x) {
   # mark empty lines
   x[x == ""] <- "<blank />"
-  # remove undesired characters
-  x <- gsub('[^ -<>\\[\\]()~,.":/=a-z0-9`]', "", x)
+  # extract expected characters
+  x <- stringr::str_extract(x, '[ -_<>\\[\\]()~,.":/=a-z0-9`]*')
   # remove any empty lines created when removing characters
   x <- x[x != ""]
   # revert marked empty lines

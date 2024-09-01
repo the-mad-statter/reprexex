@@ -65,9 +65,9 @@ Copy the code to the clipboard and then run `reprexex()`
 reprexex::reprexex()
 ```
 
-Your code is run and the rendered results written to the clipboard. You
-are now ready to share your reprex somewhere like StackOverflow with a
-simple paste.
+Your code is executed and the rendered results written to the clipboard.
+You are now ready to share your reprex somewhere like StackOverflow with
+a simple paste.
 
 <br />
 

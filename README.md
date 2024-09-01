@@ -56,7 +56,7 @@ around a troublesome object.
 library(reprexex)
 library(table1)
 
-as_img(table1(~ mpg + cyl, data = mtcars))
+as_img(table1(~ mpg + cyl + disp, data = mtcars))
 ```
 
 Copy the code to the clipboard and then run `reprexex()`

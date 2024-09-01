@@ -66,7 +66,7 @@ Write reprex code that includes `library(reprexex)` and an `as_img()` around a t
 library(reprexex)
 library(table1)
 
-as_img(table1(~ mpg + cyl, data = mtcars))
+as_img(table1(~ mpg + cyl + disp, data = mtcars))
 ```
 
 Copy the code to the clipboard and then run `reprexex()`

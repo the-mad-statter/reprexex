@@ -48,7 +48,19 @@ test_that("reprexex", {
       clip[7]
     },
     {
-      '<img src="https://i.imgur.com/.+\\.png" width="\\d+" />'
+      paste0(
+        "(",
+        '<img src="',
+        "|",
+        "!\\[\\]\\(",
+        ")",
+        "https://i.imgur.com/.+\\.png",
+        "(",
+        '" width="\\d+" />',
+        "|",
+        "\\)",
+        ")"
+      )
     }
   )
 

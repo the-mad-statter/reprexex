@@ -50,7 +50,7 @@ install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s
 ## Example
 
 Write reprex code that includes `library(reprexex)` and an `as_img()`
-around a troublesome html object.
+around a troublesome object.
 
 ``` r
 library(reprexex)

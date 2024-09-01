@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 `r badger::badge_last_commit(branch = "main")`
 `r badger::badge_license()`
 <br />
-`r badger::badge_github_actions(action = "Style")`
+`r badger::badge_github_actions(action = "style")`
 `r badger::badge_github_actions(action = "lint")`
 `r badger::badge_github_actions(action = "test-coverage")`
 `r badger::badge_codecov()`

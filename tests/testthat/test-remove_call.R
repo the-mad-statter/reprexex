@@ -2,7 +2,7 @@ test_that("remove_function_call_from_code", {
   expect_equal(
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
@@ -10,7 +10,7 @@ test_that("remove_function_call_from_code", {
     },
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "table1(~ mpg, data = mtcars)"
       )
@@ -26,7 +26,7 @@ test_that("remove_function_call_from_clip", {
   expect_equal(
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
@@ -34,11 +34,12 @@ test_that("remove_function_call_from_clip", {
 
       remove_function_call_from_clip()
 
-      clipr::read_clip()[1:3]
+      clipr::read_clip() |>
+        clean_clip()
     },
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "table1(~ mpg, data = mtcars)"
       )
@@ -51,7 +52,7 @@ test_that("remove_library_call_from_code", {
     {
       c(
         "library(reprexex)",
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
@@ -59,7 +60,7 @@ test_that("remove_library_call_from_code", {
     },
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       )
@@ -76,7 +77,7 @@ test_that("remove_library_call_from_clip", {
     {
       c(
         "library(reprexex)",
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       ) |>
@@ -84,11 +85,12 @@ test_that("remove_library_call_from_clip", {
 
       remove_library_call_from_clip()
 
-      clipr::read_clip()[1:3]
+      clipr::read_clip() |>
+        clean_clip()
     },
     {
       c(
-        "library(table1)",
+        "library(table1, warn.conflicts = FALSE)",
         "",
         "as_img(table1(~ mpg, data = mtcars))"
       )

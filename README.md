@@ -13,7 +13,7 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![License: GPL (\>=
 3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
 <br /> [![R build
-status](https://github.com/the-mad-statter/reprexex/workflows/Style/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+status](https://github.com/the-mad-statter/reprexex/workflows/style/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
 [![R build
 status](https://github.com/the-mad-statter/reprexex/workflows/lint/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
 [![R build

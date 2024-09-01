@@ -28,6 +28,7 @@ jobs:
       - name: Install rmd dependencies
         run: |
           install.packages("badger")
+          install.packages("rmarkdown")
         shell: Rscript {0}
 
       - name: Render Rmarkdown files and Commit Results

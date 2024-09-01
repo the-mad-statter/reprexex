@@ -8,6 +8,7 @@
 #' @param call function call to remove
 #'
 #' @return code with function call removed
+#' @export
 #'
 #' @examples
 #' c(
@@ -57,6 +58,7 @@ remove_function_call_from_code <- function(code, call) {
 #' @param call function call to remove
 #'
 #' @return invisibly returns clip code with function call removed
+#' @export
 #'
 #' @examples
 #' library(clipr)
@@ -85,6 +87,7 @@ remove_function_call_from_clip <- function(call = "as_img") {
 #' @param lib library for which to remove library call
 #'
 #' @return code with library call removed
+#' @export
 #'
 #' @examples
 #' c(
@@ -111,6 +114,7 @@ remove_library_call_from_code <- function(code, lib) {
 #' @param lib library for which to remove library call
 #'
 #' @return invisibly returns clip code with library call removed
+#' @export
 #'
 #' @examples
 #' library(clipr)

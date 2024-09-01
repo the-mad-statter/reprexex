@@ -47,6 +47,30 @@ install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s
 
 <br />
 
+## Example
+
+Write reprex code that includes `library(reprexex)` and an `as_img()`
+around a troublesome html object.
+
+``` r
+library(reprexex)
+library(table1)
+
+as_img(table1(~ mpg + cyl, data = mtcars))
+```
+
+Copy the code to the clipboard and then run `reprexex()`
+
+``` r
+reprexex::reprexex()
+```
+
+Your code is run and the rendered results written to the clipboard. You
+are now ready to share your reprex somewhere like StackOverflow with a
+simple paste.
+
+<br />
+
 ## Code of Conduct
 
 Please note that the reprexex project is released with a [Contributor

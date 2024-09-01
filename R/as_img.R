@@ -1,5 +1,10 @@
 #' As Image
 #'
+#' @description
+#' Convert an object to an image by rendering the object in its own RMarkdown
+#' file and taking a webshot.
+#'
+#'
 #' @param x object to convert to image
 #' @param ... additional arguments
 #'

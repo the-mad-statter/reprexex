@@ -12,7 +12,8 @@ as_img(x, ...)
 \item{...}{additional arguments}
 }
 \description{
-As Image
+Convert an object to an image by rendering the object in its own RMarkdown
+file and taking a webshot.
 }
 \examples{
 \dontrun{

@@ -3,4 +3,8 @@
 S3method(reprexex::as_img,default)
 S3method(reprexex::as_img,table1)
 export(as_img)
+export(remove_function_call_from_clip)
+export(remove_function_call_from_code)
+export(remove_library_call_from_clip)
+export(remove_library_call_from_code)
 export(reprexex)

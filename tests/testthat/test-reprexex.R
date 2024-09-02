@@ -14,8 +14,6 @@ test_that("reprexex", {
     skip(clipr::dr_clipr())
   }
 
-  try_max <- 10
-
   reprexex_input <- c(
     "library(reprexex)",
     "library(table1, warn.conflicts = FALSE)",

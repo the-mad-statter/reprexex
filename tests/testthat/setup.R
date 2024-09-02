@@ -3,6 +3,9 @@ withr::local_envvar(
   .local_envir = teardown_env()
 )
 
+# number of test attempts per batch
+try_max <- 10
+
 #' Read Clean Clip
 #'
 #' Sometimes [clipr::read_clip]` returns extra characters. This function

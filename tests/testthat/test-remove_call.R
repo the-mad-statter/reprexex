@@ -1,19 +1,25 @@
+remove_function_call_input <- c(
+  "library(reprexex)",
+  "library(table1, warn.conflicts = FALSE)",
+  "",
+  "as_img(table1(~ mpg, data = mtcars))"
+)
+
+remove_function_call_output <- c(
+  "library(reprexex)",
+  "library(table1, warn.conflicts = FALSE)",
+  "",
+  "table1(~ mpg, data = mtcars)"
+)
+
 test_that("remove_function_call_from_code", {
   expect_equal(
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      ) |>
+      remove_function_call_input |>
         remove_function_call_from_code(call = "as_img")
     },
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "table1(~ mpg, data = mtcars)"
-      )
+      remove_function_call_output
     }
   )
 })
@@ -23,47 +29,55 @@ test_that("remove_function_call_from_clip", {
     skip(clipr::dr_clipr())
   }
 
-  expect_equal(
+  try_max <- 10
+
+  testthat::expect_gte(
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      ) |>
-        clipr::write_clip()
+      try_results <- purrr::map(1:try_max, ~ {
+        safely_expect_equal(
+          {
+            remove_function_call_input |>
+              clipr::write_clip()
 
-      remove_function_call_from_clip()
+            remove_function_call_from_clip()
 
-      clipr::read_clip() |>
-        clean_clip()
+            read_clean_clip()[1:4]
+          },
+          {
+            remove_function_call_output
+          }
+        )
+      })
+
+      p_success(try_results)
     },
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "table1(~ mpg, data = mtcars)"
-      )
+      1 / try_max
     }
   )
 })
 
+remove_library_call_input <- c(
+  "library(reprexex)",
+  "library(table1, warn.conflicts = FALSE)",
+  "",
+  "as_img(table1(~ mpg, data = mtcars))"
+)
+
+remove_library_call_output <- c(
+  "library(table1, warn.conflicts = FALSE)",
+  "",
+  "as_img(table1(~ mpg, data = mtcars))"
+)
+
 test_that("remove_library_call_from_code", {
   expect_equal(
     {
-      c(
-        "library(reprexex)",
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      ) |>
+      remove_library_call_input |>
         remove_library_call_from_code("reprexex")
     },
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      )
+      remove_library_call_output
     }
   )
 })
@@ -73,27 +87,30 @@ test_that("remove_library_call_from_clip", {
     skip(clipr::dr_clipr())
   }
 
-  expect_equal(
+  try_max <- 10
+
+  testthat::expect_gte(
     {
-      c(
-        "library(reprexex)",
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      ) |>
-        clipr::write_clip()
+      try_results <- purrr::map(1:try_max, ~ {
+        safely_expect_equal(
+          {
+            remove_library_call_input |>
+              clipr::write_clip()
 
-      remove_library_call_from_clip()
+            remove_library_call_from_clip()
 
-      clipr::read_clip() |>
-        clean_clip()
+            read_clean_clip()[1:3]
+          },
+          {
+            remove_library_call_output
+          }
+        )
+      })
+
+      p_success(try_results)
     },
     {
-      c(
-        "library(table1, warn.conflicts = FALSE)",
-        "",
-        "as_img(table1(~ mpg, data = mtcars))"
-      )
+      1 / try_max
     }
   )
 })

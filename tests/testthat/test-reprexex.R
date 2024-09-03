@@ -14,59 +14,31 @@ test_that("reprexex", {
     skip(clipr::dr_clipr())
   }
 
-  reprexex_input <- c(
-    "library(reprexex)",
-    "library(table1, warn.conflicts = FALSE)",
-    "",
-    "as_img(table1(~ mpg, data = mtcars))"
-  )
-
   expect_gte(
     {
-      try_results <- purrr::map(1:try_max, ~ {
-        reprexex_input |>
+      purrr::map(1:try_max, ~ {
+        c(
+          "library(reprexex)",
+          "library(table1, warn.conflicts = FALSE)",
+          "",
+          "as_img(table1(~ mpg, data = mtcars))"
+        ) |>
           clipr::write_clip()
 
         reprexex()
 
-        safely_expect_equal(
-          {
-            read_clean_clip()[1:6]
-          },
-          {
-            c(
-              "``` r",
-              "library(table1, warn.conflicts = FALSE)",
-              "",
-              "table1(~ mpg, data = mtcars)",
-              "```",
-              ""
-            )
-          }
-        )
-      })
-
-      p_success(try_results)
-    },
-    {
-      1 / try_max
-    }
-  )
-
-  expect_gte(
-    {
-      try_results <- purrr::map(1:try_max, ~ {
-        reprexex_input |>
-          clipr::write_clip()
-
-        reprexex()
-
-        safely_expect_match(
-          {
-            read_clean_clip()[7]
-          },
-          {
-            paste0(
+        clipr::read_clip() |>
+          clean_clip()
+      }) |>
+        purrr::map_lgl(\(try_output) {
+          all(
+            try_output[1] == "``` r",
+            try_output[2] == "library(table1, warn.conflicts = FALSE)",
+            try_output[3] == "",
+            try_output[4] == "table1(~ mpg, data = mtcars)",
+            try_output[5] == "```",
+            try_output[6] == "",
+            try_output[7] |> stringr::str_detect(paste0(
               "(",
               '<img src="',
               "|",
@@ -78,65 +50,15 @@ test_that("reprexex", {
               "|",
               "\\)",
               ")"
-            )
-          }
-        )
-      })
-
-      p_success(try_results)
-    },
-    {
-      1 / try_max
-    }
-  )
-
-  expect_gte(
-    {
-      try_results <- purrr::map(1:try_max, ~ {
-        reprexex_input |>
-          clipr::write_clip()
-
-        reprexex()
-
-        safely_expect_equal(
-          {
-            read_clean_clip()[8]
-          },
-          {
-            ""
-          }
-        )
-      })
-
-      p_success(try_results)
-    },
-    {
-      1 / try_max
-    }
-  )
-
-  expect_gte(
-    {
-      try_results <- purrr::map(1:try_max, ~ {
-        reprexex_input |>
-          clipr::write_clip()
-
-        reprexex()
-
-        safely_expect_match(
-          {
-            read_clean_clip()[9]
-          },
-          {
-            paste0(
+            )),
+            try_output[8] == "",
+            try_output[9] |> stringr::str_detect(paste0(
               "<sup>Created on \\d{4}-\\d{2}-\\d{2} with \\[reprex v\\d",
               "\\.\\d\\.\\d\\]\\(https://reprex\\.tidyverse\\.org\\)</sup>"
-            )
-          }
-        )
-      })
-
-      p_success(try_results)
+            ))
+          )
+        }) |>
+        sum() / try_max
     },
     {
       1 / try_max

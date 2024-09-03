@@ -29,27 +29,19 @@ test_that("remove_function_call_from_clip", {
     skip(clipr::dr_clipr())
   }
 
-  try_max <- 10
-
   testthat::expect_gte(
     {
-      try_results <- purrr::map(1:try_max, ~ {
-        safely_expect_equal(
-          {
-            remove_function_call_input |>
-              clipr::write_clip()
+      purrr::map_lgl(1:try_max, ~ {
+        remove_function_call_input |>
+          clipr::write_clip()
 
-            remove_function_call_from_clip()
+        remove_function_call_from_clip()
 
-            read_clean_clip()[1:4]
-          },
-          {
-            remove_function_call_output
-          }
+        all(
+          clipr::read_clip() |> clean_clip(1:4) == remove_function_call_output
         )
-      })
-
-      p_success(try_results)
+      }) |>
+        sum() / try_max
     },
     {
       1 / try_max
@@ -87,27 +79,17 @@ test_that("remove_library_call_from_clip", {
     skip(clipr::dr_clipr())
   }
 
-  try_max <- 10
-
   testthat::expect_gte(
     {
-      try_results <- purrr::map(1:try_max, ~ {
-        safely_expect_equal(
-          {
-            remove_library_call_input |>
-              clipr::write_clip()
+      purrr::map_lgl(1:try_max, ~ {
+        remove_library_call_input |>
+          clipr::write_clip()
 
-            remove_library_call_from_clip()
+        remove_library_call_from_clip()
 
-            read_clean_clip()[1:3]
-          },
-          {
-            remove_library_call_output
-          }
-        )
-      })
-
-      p_success(try_results)
+        all(clipr::read_clip() |> clean_clip(1:3) == remove_library_call_output)
+      }) |>
+        sum() / try_max
     },
     {
       1 / try_max

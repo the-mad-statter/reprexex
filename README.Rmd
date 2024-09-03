@@ -60,7 +60,9 @@ install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s
 
 ## Example
 
-Write reprex code that includes `library(reprexex)` and an `as_img()` around a troublesome object.
+Sometimes code [prevents a reprex from rendering](https://github.com/tidyverse/reprex/issues/371). This is especially true when an html object is created.
+
+Here we write reprex code that includes `library(reprexex)` and an `as_img()` around such a troublesome object.
 
 ```r
 library(reprexex)

@@ -12,11 +12,15 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![](https://img.shields.io/github/last-commit/the-mad-statter/reprexex.svg)](https://github.com/the-mad-statter/reprexex/commits/main)
 [![License: GPL (\>=
 3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
-<br /> [![style status](https://github.com/the-mad-statter/reprexex/workflows/style/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
-[![lint status](https://github.com/the-mad-statter/reprexex/workflows/lint/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
-[![test-coverage status](https://github.com/the-mad-statter/reprexex/workflows/test-coverage/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+<br /> [![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/style/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/lint/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/test-coverage/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
 [![](https://codecov.io/gh/the-mad-statter/reprexex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/the-mad-statter/reprexex)
-[![R-CMD-check status](https://github.com/the-mad-statter/reprexex/workflows/R-CMD-check/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
+[![R build
+status](https://github.com/the-mad-statter/reprexex/workflows/R-CMD-check/badge.svg)](https://github.com/the-mad-statter/reprexex/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -45,8 +49,12 @@ install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s
 
 ## Example
 
-Write reprex code that includes `library(reprexex)` and an `as_img()`
-around a troublesome object.
+Sometimes code [prevents a reprex from
+rendering](https://github.com/tidyverse/reprex/issues/371). This is
+especially true when an html object is created.
+
+Here we write reprex code that includes `library(reprexex)` and an
+`as_img()` around such a troublesome object.
 
 ``` r
 library(reprexex)
